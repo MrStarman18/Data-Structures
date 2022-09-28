@@ -1,0 +1,2 @@
+# compile any set of files into a program whose name is based on the first file
+g++ -g -std=gnu++17 -Wall -Wextra -Werror -Wshadow $@ -o ${1%.*}
