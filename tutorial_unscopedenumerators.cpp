@@ -18,7 +18,7 @@ int main()
     Fruit fruit { banana };
 
     if (color == fruit) // The compiler will compare color and fruit as integers
-        std::cout << "color and fruit are equal\n"; // and find they are equal!
+        std::cout << "color and fruit are equal\n"; // and find they are equal! (wrong)
     else
         std::cout << "color and fruit are not equal\n";
 

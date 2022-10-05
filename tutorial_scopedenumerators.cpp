@@ -23,3 +23,5 @@ int main()
 
     return 0;
 }
+/*This program produces a compile error on line 19, since the scoped enumeration won’t convert 
+to any type that can be compared with another type.*/
