@@ -18,11 +18,10 @@ public:
 
     std::string normalizeScale(std::string s)
     {
+        transform(s.begin(), s.end(), s.begin(), ::tolower);    //converts string to lowercase
         if (s.empty()) {
             throw std::invalid_argument("Scale is still null.\n");
         }
-        transform(s.begin(), s.end(), s.begin(), ::tolower);
-    //converts string to lowercase
         if ((s == "c") || (s.substr(0,4) == "cels")) {return "C";}
         if ((s == "f") || (s.substr(0,4) == "fahr")) {return "F";}
         return "?";
@@ -55,7 +54,7 @@ int main()
 
     try{    //attempt to run following block of code, checking for errors
         double otemp = tc.convertTemp(itemp, iunit, ounit);
-        std::cout << "The answer is " << otemp;
+        std::cout << "The answer is " << otemp << std::endl;
     }
     catch(const std::exception& e) {    //catches and prints errors from throw statments
         std::cout << e.what();
