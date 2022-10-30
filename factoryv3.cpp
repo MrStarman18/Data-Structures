@@ -2,8 +2,8 @@
 Date: October 25, 2022
 Project: Factory
 This program computes a K-factory using a List ADT.*/
+//Program as it was after refining solution but before reading from .txt file
 #include <iostream>
-#include <fstream>
 #include <string>
 #include "adt_list.h"
 using namespace std;
@@ -21,21 +21,21 @@ void verify(List<int>::Iterator &i, int &number, int kFactor, int &untilInsert, 
 int main(int argc, char*argv[])
 {
     List<int> numbers;
-    //ifstream f;
-    List<int>::Iterator i = numbers.getHead();
-    int input;
-    //int ix = 0; //ix is 0-100 since there are 100 elements in numbers.data
-    while (cin >> input)
-    {
-        i.insert(input);
-    }
-    
+    numbers.append(15); //test list -- will come from .txt file
+    numbers.append(20);
+    numbers.append(35);
+    numbers.append(10);
+    numbers.append(13);
+    numbers.append(24);
+    numbers.append(49);
+    numbers.append(90);
+    numbers.append(55); //end test list
     int kFactor,                    //the value we'll be verifying multiples of
     untilInsert{0}, toInsert{-7};   //middlemen used in verify/insert functionality    
     if (argc > 0)
     {
         kFactor = stoi(argv[1]);
-        i = numbers.getHead();
+        List<int>::Iterator i = numbers.getHead();
         while (i)   //while(i) with i++ iterator works!
         {
             verify(i, *i, kFactor, untilInsert, toInsert);

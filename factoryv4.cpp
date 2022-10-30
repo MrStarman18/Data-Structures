@@ -21,21 +21,25 @@ void verify(List<int>::Iterator &i, int &number, int kFactor, int &untilInsert, 
 int main(int argc, char*argv[])
 {
     List<int> numbers;
-    //ifstream f;
-    List<int>::Iterator i = numbers.getHead();
-    int input;
-    //int ix = 0; //ix is 0-100 since there are 100 elements in numbers.data
-    while (cin >> input)
-    {
-        i.insert(input);
-    }
+    ifstream f;
+    int ix = 0; //ix is 0-100 since there are 100 elements in numbers.data
     
+    f.open("data.txt");    
+    if (f.is_open())
+    {
+        while (ix < 100 && f >> numbers.data[ix])   //read the numbers from the file
+        {
+            // numbers.append();
+            ix++;
+        }   
+        f.close();
+    }   
     int kFactor,                    //the value we'll be verifying multiples of
     untilInsert{0}, toInsert{-7};   //middlemen used in verify/insert functionality    
     if (argc > 0)
     {
         kFactor = stoi(argv[1]);
-        i = numbers.getHead();
+        List<int>::Iterator i = numbers.getHead();
         while (i)   //while(i) with i++ iterator works!
         {
             verify(i, *i, kFactor, untilInsert, toInsert);
