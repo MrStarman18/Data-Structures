@@ -2,7 +2,7 @@
 Date: October 25, 2022
 Project: Factory
 This program computes a K-factory using a List ADT.*/
-//Program works in IDE, but Athene crashes when iterating after removal.
+//Finally fixed off by ones *I think*, but untilInsert computation is off.
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,11 +13,11 @@ void verify(List<int>::Iterator &i, int number, int kFactor, int &untilInsert, i
 {   //if current value is invalid && there's not a queued value to be inserted
     if (number % kFactor != 0 && untilInsert <= 0)  
     {
-        toInsert = number;          //toInsert will be incremented and reinserted into list
-        while (number % kFactor != 0)   //compute timing of reinsertion
-            number += 1;   //ATHENE PROBLEM LINE 1/2
-        untilInsert = (number - toInsert);
+        cout << number << "%" << kFactor << ": " << number%kFactor << endl;
+        untilInsert = (number % kFactor);
+        toInsert = number;
         i.remove();
+        cout << "untilInsert from verify: " << untilInsert << endl;
     }
 }
 
@@ -40,18 +40,18 @@ int main(int argc, char*argv[])
         while (i)
         {
             verify(i, *i, kFactor, untilInsert, toInsert);
-            if (i) 
-            {
-                ++i;    //Athene problem line, solving by only iterating if i is valid?
-            }          
+            i++;           
+            cout << "toInsert: " << toInsert << " untilInsert: " << untilInsert << endl << endl;           
             if (untilInsert > 0)   //runs until value is incremented to multiple of K
             {
                 --untilInsert;
                 ++toInsert;
+                cout << "toInsert incrementd. ";
             }
             if (untilInsert == 0 && toInsert >= 0)  //if value pending && countdown = 0, insert it
             {
                 i.insert(toInsert);
+                cout << "inserted: " << toInsert << endl;
                 toInsert = -7;
                 untilInsert--;
             }

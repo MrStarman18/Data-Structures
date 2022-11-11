@@ -40,10 +40,7 @@ int main(int argc, char*argv[])
         while (i)
         {
             verify(i, *i, kFactor, untilInsert, toInsert);
-            if (i) 
-            {
-                ++i;    //Athene problem line, solving by only iterating if i is valid?
-            }          
+            ++i;        //ATHENE PROBLEM LINE 2/2   
             if (untilInsert > 0)   //runs until value is incremented to multiple of K
             {
                 --untilInsert;
